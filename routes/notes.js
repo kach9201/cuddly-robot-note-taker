@@ -2,12 +2,16 @@ const express = require('express')
 const router = express.Router()
 const { readFromFile, readAndAppend, writeToFile } = require('../helpers/fsUtils');
 const uuid = require("../helpers/uuid")
-
+const fs = require ("fs")
 //GET /api/notes reads the db.json file and return all saved notes as JSON
 router.get('/', (req, res) => {
     console.info(`${req.method} request received for notes`);
     readFromFile('./db/db.json')
     .then((data) => res.json(JSON.parse(data)))
+    // fs.readFile("db/db.json", "utf-8", (err,data)=>{
+    //     return err ? console.log (err) : res.json(JSON.parse(data));
+    // })
+
 })
     
 //POST /api/notes receives a new notes to save on the request body and add it to the db.json file, 

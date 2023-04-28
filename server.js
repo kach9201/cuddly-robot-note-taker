@@ -16,12 +16,12 @@ app.use(express.static('public'));
 //HTML routes
 //GET /notes returns the notes.html file
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/notes.html'))
+    res.sendFile(path.join(__dirname, './public/notes.html'))
 })
 
 //GET * returns the index.html
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
 app.use(routes)
