@@ -1,5 +1,10 @@
 # cuddly-robot-note-taker
 
+Walkthrough GIF
+
+![Untitled_ Apr 28, 2023 7_46 PM](https://user-images.githubusercontent.com/116523970/235270875-a0ba5338-0e9f-4028-9471-4cd38c10adf2.gif)
+
+
 User Story
 
 AS A small business owner
