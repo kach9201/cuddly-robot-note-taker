@@ -1,21 +1,31 @@
-const PORT = process.env.PORT || 3001;
 const express = require('express');
-const app = express();
-const fs = require('fs');
 const path = require('path');
-const apiRoutes = require('./routes/apiRoutes');
-const htmlRoutes = require('./routes/htmlRoutes');
+const routes = require('./routes');
 
-app.use(express.urlencoded({
-    extended: true
-}));
+
+const PORT = process.env.PORT || 3001;
+
+const app = express();
+
+// Middleware for parsing JSON and urlencoded form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-app.use(express.json());
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
 
+//HTML routes
+//GET /notes returns the notes.html file
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/notes.html'))
+})
 
-app.listen(PORT, () => {
-    console.log(`API server now on port ${PORT}!`);
-});
+//GET * returns the index.html
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+})
+
+app.use(routes)
+
+app.listen(PORT, () =>
+    console.log(`App listening at http://localhost:${PORT}`)
+);
